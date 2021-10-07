@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Resultado from './Resultado';
+import styles from './style';
 
 export default function Formulario() {
 
@@ -18,7 +19,7 @@ export default function Formulario() {
             return setResposta("Gasolina é mais vantajoso!");
         }
         else{
-            setResposta("O custo benefício é o mesmo para os dois!");
+            setResposta("Mesmo custo-benefício!");
             return;
         }
     }
@@ -33,46 +34,53 @@ export default function Formulario() {
             setKmGasolina(null);
             return;
         }
-        setRespostaAlcool(null);
-        setRespostaGasolina(null);
         setTextBotao("Calcular");
         setResposta("Preencha os valores pedidos!");
     }
 
   return (
-    <View>
-        <View>
-            <Text>Valor do litro do Álcool</Text>
+    <View style ={styles.formContext}>
+        <View style = {styles.form}>
+            <Text style = {styles.formLabel}>Valor do litro do Álcool</Text>
             <TextInput
+                style={styles.input}
                 onChangeText={setLitroAlcool}
                 value={litroAlcool}
                 placeholder="Ex: 3.65"
                 keyboardType="numeric"
             ></TextInput>
-            <Text>Km por litro de Álcool</Text>
+            <Text style = {styles.formLabel}>Km por litro de Álcool</Text>
             <TextInput
+                style={styles.input}
                 onChangeText={setKmAlcool}
                 value={kmAlcool}
                 placeholder="Ex: 7"
                 keyboardType="numeric"
             ></TextInput>
-            <Text>Valor do litro da Gasolina</Text>
+            <Text style = {styles.formLabel}>Valor do litro da Gasolina</Text>
             <TextInput
+                style={styles.input}
                 onChangeText={setLitroGasolina}
                 value={litroGasolina}
                 placeholder="Ex: 5.85"
                 keyboardType="numeric"
             ></TextInput>
-            <Text>Km por litro de Gasolina</Text>
+            <Text style = {styles.formLabel}>Km por litro de Gasolina</Text>
             <TextInput
+                style={styles.input}
                 onChangeText={setKmGasolina}
                 value={kmGasolina}
                 placeholder="Ex: 9"
                 keyboardType="numeric"
             ></TextInput>
-            <Button
-                onPress={validaResposta}
-                title={textBotao}/>
+            <TouchableOpacity
+                style = {styles.botao}
+                onPress={() => {
+                    validaResposta()
+                }}
+            >
+                <Text style={styles.formTextoBotao}> {textBotao}</Text>    
+            </TouchableOpacity>
         </View>
         <Resultado resultado={resposta}/>
     </View>

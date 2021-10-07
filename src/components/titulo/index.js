@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import styles from './style';
 
 export default function Titulo() {
   return (
-    <View>
-        <Text>Álcool vs Gasolina</Text>
+    <View style={styles.boxTitle}>
+        <Text style={styles.textTitle}>Álcool vs Gasolina</Text>
     </View>
   );
 }
